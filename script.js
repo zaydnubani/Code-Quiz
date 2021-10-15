@@ -11,48 +11,15 @@ var Q3 = document.querySelector("#Q3");
 var Q4 = document.querySelector("#Q4");
 var gameOver = document.querySelector("#gameOver");
 var qPoint = document.querySelector(".qPoint");
-var Q1P1 = document.querySelector("#Q1P1");
-var Q1P2 = document.querySelector("#Q1P2");
-var Q1P3 = document.querySelector("#Q1P3");
-var Q1P4 = document.querySelector("#Q1P4");
-var Q2P1 = document.querySelector("#Q2P1");
-var Q2P2 = document.querySelector("#Q2P2");
-var Q2P3 = document.querySelector("#Q2P3");
-var Q2P4 = document.querySelector("#Q2P4");
-var Q3P1 = document.querySelector("#Q3P1");
-var Q3P2 = document.querySelector("#Q3P2");
-var Q3P3 = document.querySelector("#Q3P3");
-var Q3P4 = document.querySelector("#Q3P4");
-var Q4P1 = document.querySelector("#Q4P1");
-var Q4P2 = document.querySelector("#Q4P2");
-var Q4P3 = document.querySelector("#Q4P3");
-var Q4P4 = document.querySelector("#Q4P4");
 var nextQ = document.querySelector("#nextQ");
 var rightWrong = document.querySelector("#rightWrong");
 var nextQBtn = document.querySelector("#nextQBtn");
-// ```
-
-// ## Question Answers
-// ```
-var q1P1 = "true"; 
-var q1P2 = "false";
-var q1P3 = "false";
-var q1P4 = "false";
-
-var q2P1 = "false"; 
-var q2P2 = "false";
-var q2P3 = "true";
-var q2P4 = "false";
-
-var q3P1 = "false"; 
-var q3P2 = "false";
-var q3P3 = "false";
-var q3P4 = "true";
-
-var q4P1 = "false"; 
-var q4P2 = "true";
-var q4P3 = "false";
-var q4P4 = "false";
+var score = document.querySelector("#score");
+var finScore = document.querySelector("#finScore");
+var scoreBoard = document.querySelector("#scoreBoard");
+var submit = document.querySelector("#submit");
+var scoreList = document.querySelector("#scoreList");
+var nameInput = document.querySelector("#name");
 // ```
 
 // WHEN I OPEN the page I am presented with: a(n) Welcome Statement and a(n) Start Button.
@@ -64,6 +31,7 @@ function startValFal(){
       codeQTitle.setAttribute("class", "displayNone");
       scoreTimer.setAttribute("class", "displayNone");
       gameOver.setAttribute("class", "displayNone");
+      scoreBoard.setAttribute("class", "displayNone");
       Q1.setAttribute("class", "displayNone");
       Q2.setAttribute("class", "displayNone");
       Q3.setAttribute("class", "displayNone");
@@ -81,6 +49,7 @@ startValFal();
 btn.addEventListener("click", function() {
    if (startVal === "false"){
       startVal = "true";
+      console.log(startVal);
       codeQTitle.setAttribute("class", "displayVis");
       scoreTimer.setAttribute("class", "displayVis");
       Q1.setAttribute("class", "displayVis");
@@ -91,20 +60,20 @@ btn.addEventListener("click", function() {
       startValFal();
    }
 });
+
+// console.log(startVal); 
 // ```
 
 // THEN the Timer Starts.
 // ```
-var timeLeft = 10;
+var timeLeft = 60;
 var timerInterval = null;
-// function wrongAnswer () {
-//       timeLeft = timeLeft - 100;
-// };
+var clearTime = clearInterval(timerInterval);
 
 btn.addEventListener("click", function() {
          timerInterval = setInterval(function() {
          timeLeft--;
-         timer.textContent = "Time Left: " + timeLeft;
+         timer.textContent = "Time Left: " + timeLeft + " seconds.";
          
          if (timeLeft <= 0) {
             clearInterval(timerInterval);
@@ -119,12 +88,15 @@ btn.addEventListener("click", function() {
 // ```
 function timesUp() {
       gameOver.setAttribute("class", "displayVis");
+      scoreTimer.textContent = "Times Up!";
       codeQTitle.setAttribute("class", "displayNone");
-      scoreTimer.setAttribute("class", "displayNone");
+      score.setAttribute("class", "displayNone");
+      nextQ.setAttribute("class", "displayNone");
       Q1.setAttribute("class", "displayNone");
       Q2.setAttribute("class", "displayNone");
       Q3.setAttribute("class", "displayNone");
       Q4.setAttribute("class", "displayNone");
+      finScore.textContent = "Your Score: " + scoreCount + ".";
 };
 // ```
 
@@ -166,331 +138,103 @@ nextQBtn.addEventListener ("click", function(){
       Q3.setAttribute("class", "displayNone");
       Q4.setAttribute("class", "displayNone");
       gameOver.setAttribute("class", "displayVis");
+      clearInterval(timerInterval);
+      finScore.textContent = "Your Score: " + scoreCount + ".";
    }
    else {
       nextQBtn.textContent = "Not Working"
    };
 });
+
+var scoreCount = 0;
+
+function scoreDraw(){
+   if(startVal === "true");
+   score.innerHTML = "Score: " + scoreCount;
+};
+
+scoreDraw();
+
+// ## Question
+// ```
+function runQuestion(v, w, x, y, z) {
+   v.addEventListener ("click", function(event) {
+      console.log(event.target);
+      console.log("Im Here");
+      if (event.target.getAttribute("data-correct") === "true"){
+         nextQ.setAttribute("class", "displayVis");
+         rightWrong.textContent = "You're Right!";
+         w.setAttribute("class", "displayNone");
+         x.setAttribute("class", "displayNone");
+         y.setAttribute("class", "displayNone");
+         z.setAttribute("class", "displayNone");
+         truFal = "true";
+         console.log(truFal);
+         scoreCount = scoreCount +1;
+         console.log(scoreCount);
+         score.innerHTML = "Score: " + scoreCount;
+      }
+      else {
+         console.log(event.target);
+         console.log("Im Here");
+         nextQ.setAttribute("class", "displayVis");
+         rightWrong.textContent = "You're Wrong!";
+         w.setAttribute("class", "displayNone");
+         x.setAttribute("class", "displayNone");
+         y.setAttribute("class", "displayNone");
+         z.setAttribute("class", "displayNone");
+         timeLeft = timeLeft - 10;
+         truFal = "false";
+      };
+   });
+};
+
+runQuestion(Q1, Q1, Q2, Q3, Q4);
+
+runQuestion(Q2, Q1, Q2, Q3, Q4);
+
+runQuestion(Q3, Q1, Q2, Q3, Q4);
+
+runQuestion(Q4, Q1, Q2, Q3, Q4);
+
+// ## Scoreboard
 // ```
 
-// WHEN I CLICK-ON a(n) Choice I am alerted if the chosen choice is WRONG or RIGHT. 
-// ## Question 1
-// ```
-Q1.addEventListener ("click", function(event) {
-   console.log(event.target);
-   console.log("Im Here");
-   if (event.target.getAttribute("data-correct") === "true"){
-      nextQ.setAttribute("class", "displayVis");
-      rightWrong.textContent = "You're Right!";
-      Q1.setAttribute("class", "displayNone");
-      Q2.setAttribute("class", "displayNone");
-      Q3.setAttribute("class", "displayNone");
-      Q4.setAttribute("class", "displayNone");
-      
-   }
-   else {
-      nextQ.setAttribute("class", "displayVis");
-      rightWrong.textContent = "You're Wrong!";
-      Q1.setAttribute("class", "displayNone");
-      Q2.setAttribute("class", "displayNone");
-      Q3.setAttribute("class", "displayNone");
-      Q4.setAttribute("class", "displayNone");
-      // if (rightWrong.textContent === "You're Wrong!") {
-         timeLeft = timeLeft - 10;
-         // clearInterval(timerInterval);
-      // }
-   };
+submit.addEventListener("click", function(event){
+   event.preventDefault;
+   scoreBoard.setAttribute("class", "displayVis");
+   gameOver.setAttribute("class", "displayNone");
+   // scoreTimer.setAttribute("class", "displayNone");
+   // JSON.parse(localStorage.getItem("finalScore"));
+   // localStorage.setItem("finalScore", JSON.stringify(nameInput.value + " " + scoreCount));
+   savedScore();
 });
 
-// Q1P2.addEventListener ("click", function() {
-//    if (q1P2 === "true"){
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Right!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
+// function savedScore(){
+//    if(localStorage.getItem("finalScore") !== null) localStorage.getItem("finalScore") = [];
+//    if(localStorage.getItem("finalScore") !== null){
+//       var endingScore = localStorage.finalScore;
+//       parseInt(localStorage.getItem("finalScore"));
+//       var child = document.createElement("li");
+//       var appendedChild = scoreList.appendChild(child);
+//       appendedChild.innerHTML = endingScore;
 //    }
-//    else {
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Wrong!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    };
-// });
+// }
 
-// Q1P3.addEventListener ("click", function() {
-//    if (q1P3 === "true"){
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Right!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    }
-//    else {
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Wrong!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    };
-// });
-
-// Q1P4.addEventListener ("click", function() {
-//    if (q1P4 === "true"){
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Right!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    }
-//    else {
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Wrong!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    };
-// });
-// // ```
-// // ## Question 2
-// // ```
-// Q2P1.addEventListener ("click", function() {
-//    if (q2P1 === "true"){
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Right!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    }
-//    else {
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Wrong!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    };
-// });
-
-// Q2P2.addEventListener ("click", function() {
-//    if (q2P2 === "true"){
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Right!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    }
-//    else {
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Wrong!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    };
-// });
-
-// Q2P3.addEventListener ("click", function() {
-//    if (q2P3 === "true"){
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Right!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    }
-//    else {
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Wrong!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    };
-// });
-
-// Q2P4.addEventListener ("click", function() {
-//    if (q2P4 === "true"){
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Right!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    }
-//    else {
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Wrong!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    };
-// });
-// // ```
-// // ## Question 3
-// // ```
-// Q3P1.addEventListener ("click", function() {
-//    if (q3P1 === "true"){
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Right!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    }
-//    else {
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Wrong!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    };
-// });
-
-// Q3P2.addEventListener ("click", function() {
-//    if (q3P2 === "true"){
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Right!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    }
-//    else {
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Wrong!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    };
-// });
-
-// Q3P3.addEventListener ("click", function() {
-//    if (q3P3 === "true"){
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Right!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    }
-//    else {
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Wrong!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    };
-// });
-
-// Q3P4.addEventListener ("click", function() {
-//    if (q3P4 === "true"){
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Right!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    }
-//    else {
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Wrong!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    };
-// });
-// // ```
-// // ## Question 4
-// // ```
-// Q4P1.addEventListener ("click", function() {
-//    if (q3P1 === "true"){
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Right!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    }
-//    else {
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Wrong!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    };
-// });
-
-// Q4P2.addEventListener ("click", function() {
-//    if (q3P2 === "true"){
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Right!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    }
-//    else {
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Wrong!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    };
-// });
-
-// Q4P3.addEventListener ("click", function() {
-//    if (q3P3 === "true"){
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Right!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    }
-//    else {
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Wrong!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    };
-// });
-
-// Q4P4.addEventListener ("click", function() {
-//    if (q3P4 === "true"){
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Right!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    }
-//    else {
-//       nextQ.setAttribute("class", "displayVis");
-//       rightWrong.textContent = "You're Wrong!";
-//       Q1.setAttribute("class", "displayNone");
-//       Q2.setAttribute("class", "displayNone");
-//       Q3.setAttribute("class", "displayNone");
-//       Q4.setAttribute("class", "displayNone");
-//    };
-// });
-// // ```
-
+function savedScore(){
+   var existingEntries = JSON.parse(localStorage.getItem("allEntries"));
+   if(existingEntries == null) existingEntries = [];
+   var savedName = nameInput.value;
+   var savedScore = scoreCount;
+   var save = savedScore + " " + savedName;
+   localStorage.setItem("save", JSON.stringify(save));
+   existingEntries.push(save);
+   localStorage.setItem("allEntries", JSON.stringify(existingEntries));
+   var allEntries = JSON.parse(localStorage.allEntries);
+   console.log(allEntries);
+   for(i=0;i<allEntries.length;i++){
+      var child = document.createElement("li");
+      var appendedChild = scoreList.appendChild(child);
+      appendedChild.innerHTML = allEntries[i];
+   };
+};

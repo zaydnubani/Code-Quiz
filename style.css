@@ -5,3 +5,132 @@
 .displayVis{
     visibility: visible;
 }
+
+*{
+    font-family: 'Permanent Marker', cursive;
+    box-sizing: border-box;
+}
+
+#startBtn{
+    width: max-content;
+    margin: auto;
+    
+}
+
+#btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#codeQTitle{
+    width: max-content;
+    margin: auto;
+    
+}
+
+#scoreTimer{
+    width: max-content;
+    height: max-content;
+    margin: auto;
+    
+    
+}
+
+#navList{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin-left: -20px;
+}
+
+.navPoint{
+    padding-right: 20px;
+}
+
+.qList{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: -30px;
+}
+
+.qPoint{
+    padding: 10px;
+}
+
+#Q1{
+    width: 300px;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    
+}
+
+#Q2{
+    width: 300px;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    
+}
+
+#Q3{
+    width: 300px;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    
+}
+
+#Q4{
+    width: 300px;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    
+}
+
+#nextQ{
+    width: max-content;
+    margin: auto;
+    
+}
+
+#nextQBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#gameOver{
+    width: max-content;
+    margin: auto;
+    
+}
+
+#goTitle{
+    margin-left: 100px;
+    padding: 10px;
+}
+
+#finScore{
+    margin-left: 50px;
+    padding: 10px;
+}
+
+#finName{
+    margin-left: 50px;
+    padding: 10px;
+}
+
+#submitBtn{
+    margin-left: 150px;
+    padding: 10px;
+}
+
+#scoreBoard{
+    width: max-content;
+    margin: auto;
+}

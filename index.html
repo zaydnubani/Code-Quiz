@@ -5,12 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css" />
+
 </head>
 
 <body>
     <header id="codeQTitle">
-        <h1 id="codeQTitle">Lorem Ipsum</h1>
+        <h1 id="codeQTitle">Code Quiz!</h1>
     </header>
     <!-- What goes here: timer & score.  -->
     <nav id="scoreTimer">
@@ -30,93 +34,104 @@
     <section id="startBtn">
         <div>
             <h1>
-                Lorem Ipsum
+                Click the Start Button to play!
             </h1>
         </div>
-        <div>
-            <button id="btn">
+        <div id="btn">
+            <button>
                 Start
             </button>
         </div>
     </section>
     <!-- What goes here: Question 1 -->
-    <section id="Q1">
-        <ol>
+    <section id="Q1" >
+        <ol class="qList">
             <li class="qPoint">
-                <button data-correct="true" id="Q1P1">Lorem Ipsum</button>
+                <button data-correct="true" >Correct</button>
             </li>
             <li class="qPoint">
-                <button data-correct="false" id="Q1P2">Lorem Ipsum</button>
+                <button data-correct="false" >Incorrect</button>
             </li>
             <li class="qPoint"> 
-                <button data-correct="false" id="Q1P3">Lorem Ipsum</button>
+                <button data-correct="false" >Incorrect</button>
             </li>
             <li class="qPoint">
-                <button data-correct="false" id="Q1P4">Lorem Ipsum</button>
+                <button data-correct="false" >Incorrect</button>
             </li>
         </ol>
     </section>
     <!-- What goes here: Question 2 -->
-    <section id="Q2">
-        <ol>
+    <section id="Q2" >
+        <ol class="qList">
             <li class="qPoint">
-                <button id="Q2P1">Lorem Ipsum</button>
+                <button data-correct="false" >Incorrect</button>
             </li>
             <li class="qPoint">
-                <button id="Q2P2">Lorem Ipsum</button>
+                <button data-correct="false" >Incorrect</button>
             </li>
             <li class="qPoint"> 
-                <button id="Q2P3">Lorem Ipsum</button>
+                <button data-correct="true" >Correct</button>
             </li>
             <li class="qPoint">
-                <button id="Q2P4">Lorem Ipsum</button>
+                <button data-correct="false" >Incorrect</button>
             </li>
         </ol>
     </section>
     <!-- What goes here: Question 3 -->
-    <section id="Q3">
-        <ol>
+    <section id="Q3" >
+        <ol class="qList">
             <li class="qPoint">
-                <button id="Q3P1">Lorem Ipsum</button>
+                <button data-correct="false" >Incorrect</button>
             </li>
             <li class="qPoint">
-                <button id="Q3P2">Lorem Ipsum</button>
+                <button data-correct="false" >Incorrect</button>
             </li>
             <li class="qPoint"> 
-                <button id="Q3P3">Lorem Ipsum</button>
+                <button data-correct="false" >Incorrect</button>
             </li>
             <li class="qPoint">
-                <button id="Q3P4">Lorem Ipsum</button>
+                <button data-correct="true" >Correct</button>
             </li>
         </ol>
     </section>
     <!-- What goes here: Question 4 -->
-    <section id="Q4">
-        <ol>
+    <section id="Q4" >
+        <ol class="qList">
             <li class="qPoint">
-                <button id="Q4P1">Lorem Ipsum</button>
+                <button data-correct="false">Incorrect</button>
             </li>
             <li class="qPoint">
-                <button id="Q4P2">Lorem Ipsum</button>
+                <button data-correct="true" >Correct</button>
             </li>
             <li class="qPoint"> 
-                <button id="Q4P3">Lorem Ipsum</button>
+                <button data-correct="false" >Incorrect</button>
             </li>
             <li class="qPoint">
-                <button id="Q4P4">Lorem Ipsum</button>
+                <button data-correct="false" >Incorrect</button>
             </li>
         </ol>
     </section>
     <!-- What goes here: Game Over & Save Initials & Score Board -->
     <section id="gameOver">
-        <h1>Game Over</h1>
-        <div>
+        <h1 id="goTitle">Game Over</h1>
+        <div id="finScore">
             Your Score
         </div>
-        <div>
-            Enter your name.
+        <div id="finName">
+            <label for="name">Enter your name.</label>
+            <input type="text" name="name" id="name" placeholder="Jane" />
         </div>
+        <div id="submitBtn">
+            <button id="submit" >Submit</button>
+        </div>
+    </section>
+    <section id="scoreBoard">
+        <h2>High Scores</h2>
+        <div>
+            <ol id="scoreList">
 
+            </ol>
+        </div>
     </section>
     <footer id="nextQ">
         <div>
@@ -124,8 +139,8 @@
                 Lorem Ipsum
             </h1>
         </div>
-        <div>
-            <button id="nextQBtn">
+        <div id="nextQBtn">
+            <button data-correct="true">
                 Next
             </button>
         </div>
